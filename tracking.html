@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Parcel - 2M Express</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #262685;
+            --secondary: #515199;
+            --accent: #f9a825;
+            --light: #f5f5f5;
+            --dark: #333;
+            --gray: #777;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 80px;
+        }
+        
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-btns {
+            display: flex;
+            align-items: center;
+        }
+        
+        
+        .btn-book {
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .btn-book:hover {
+            background-color: #153a9e;
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/buses/2m-express-car.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+        }
+        
+        .breadcrumb li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb li:after {
+            content: '/';
+            margin-left: 10px;
+            color: var(--accent);
+        }
+        
+        .breadcrumb li:last-child:after {
+            content: '';
+            margin-left: 0;
+        }
+        
+        /* Tracking Section */
+        .tracking {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .tracking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .tracking-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h2 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.2);
+        }
+        
+        .btn-track {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-track:hover {
+            background-color: #153a9e;
+        }
+        
+        .tracking-info {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .info-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .info-header h2 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .tracking-status {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .status-delivered {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .status-transit {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+        
+        .status-pending {
+            background-color: rgba(107, 114, 128, 0.1);
+            color: var(--gray);
+        }
+        
+        .tracking-id {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        /* Tracking Timeline */
+        .tracking-timeline {
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-marker {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--light);
+            border: 3px solid #ddd;
+            margin-right: 20px;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+        
+        .timeline-item.active .timeline-marker {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .timeline-item.completed .timeline-marker {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .timeline-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .timeline-content .timeline-date {
+            font-weight: 500;
+            color: var(--secondary);
+        }
+        
+        .timeline-connector {
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: 0;
+            width: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        .timeline-item:last-child .timeline-connector {
+            display: none;
+        }
+        
+        .timeline-item.completed .timeline-connector {
+            background-color: var(--success);
+        }
+        
+        /* Parcel Details */
+        .parcel-details {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .details-header h3 {
+            color: var(--secondary);
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detail-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: var(--gray);
+        }
+        
+        .detail-value {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        /* Tracking Help */
+        .tracking-help {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-top: 50px;
+        }
+        
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .help-item {
+            text-align: center;
+        }
+        
+        .help-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(29, 78, 216, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--primary);
+            margin: 0 auto 20px;
+        }
+        
+        .help-item h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(to right, var(--secondary), #004d80);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background-color: #153a9e;
+            transform: translateY(-3px);
+        }
+        
+        .btn-light {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-light:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h4:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .tracking-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .nav-btns {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tracking-form, 
+            .tracking-info {
+                padding: 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            
+            .page-header {
+                padding: 70px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .tracking-form, 
+            .tracking-info {
+                padding: 20px;
+            }
+            
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="2M Express Logo"></a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="agent-registration.html">Agent Registration</a></li>
+                    <li><a href="terminals.html" class="active">Terminals</a></li>
+                    <li><a href="tracking.html">Track Parcels</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-btns">
+                <a href="booking.html" class="btn-book">Book Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Track Your Parcel</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="track-parcel.html">Track Parcel</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Tracking Section -->
+    <section class="tracking">
+        <div class="container">
+            <div class="section-title">
+                <h2>Parcel Tracking</h2>
+                <p>Enter your tracking number to get real-time updates on your parcel's journey</p>
+            </div>
+            
+            <div class="tracking-container">
+                <div class="tracking-form">
+                    <div class="form-header">
+                        <h2>Track Your Parcel</h2>
+                        <p>Enter your tracking number below</p>
+                    </div>
+                    
+                    <form id="trackingForm">
+                        <div class="form-group">
+                            <label for="tracking-number">Tracking Number</label>
+                            <input type="text" id="tracking-number" placeholder="e.g. 2M123456789" required>
+                        </div>
+                        
+                        <button type="submit" class="btn-track">Track Parcel</button>
+                    </form>
+                    
+                    <div class="tracking-help" style="margin-top: 30px;">
+                        <h3>Don't know your tracking number?</h3>
+                        <p>If you don't have your tracking number, please contact our customer service team for assistance.</p>
+                        <div class="contact-info" style="margin-top: 15px;">
+                            <p><strong>Phone:</strong> 0554908246</p>
+                            <p><strong>Email:</strong> support@2mexpressplus.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tracking-info">
+                    <div class="info-header">
+                        <h2>Parcel Status</h2>
+                        <p>Tracking results will appear here</p>
+                    </div>
+                    
+                    <div id="tracking-results">
+                        <div class="tracking-status">
+                            <div class="status-badge status-pending">Enter Tracking Number</div>
+                            <p class="tracking-id">No tracking number entered</p>
+                        </div>
+                        
+                        <p class="text-center">Please enter a tracking number to see the status of your parcel</p>
+                    </div>
+                    
+                    <div id="demo-results" style="display: none;">
+                        <div class="tracking-status">
+                            <div class="status-badge status-transit">In Transit</div>
+                            <p class="tracking-id">2M789654123</p>
+                        </div>
+                        
+                        <div class="tracking-timeline">
+                            <div class="timeline-item completed">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3>Parcel Received</h3>
+                                    <p>Parcel received at collection point</p>
+                                    <span class="timeline-date">Nov 28, 2025 - 09:15 AM</span>
+                                </div>
+                                <div class="timeline-connector"></div>
+                            </div>
+                            
+                            <div class="timeline-item completed">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3>Processing</h3>
+                                    <p>Parcel processed at sorting facility</p>
+                                    <span class="timeline-date">Nov 28, 2025 - 02:30 PM</span>
+                                </div>
+                                <div class="timeline-connector"></div>
+                            </div>
+                            
+                            <div class="timeline-item completed">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3>Dispatched</h3>
+                                    <p>Parcel left Accra terminal</p>
+                                    <span class="timeline-date">Nov 29, 2025 - 08:45 AM</span>
+                                </div>
+                                <div class="timeline-connector"></div>
+                            </div>
+                            
+                            <div class="timeline-item active">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3>In Transit</h3>
+                                    <p>Parcel en route to Kumasi</p>
+                                    <span class="timeline-date">Nov 29, 2025 - 10:20 AM</span>
+                                </div>
+                                <div class="timeline-connector"></div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3>Out for Delivery</h3>
+                                    <p>Parcel will be delivered soon</p>
+                                    <span class="timeline-date">Estimated: Nov 30, 2025</span>
+                                </div>
+                                <div class="timeline-connector"></div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3>Delivered</h3>
+                                    <p>Parcel delivered to recipient</p>
+                                    <span class="timeline-date">Not yet delivered</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="parcel-details">
+                            <div class="details-header">
+                                <h3>Parcel Information</h3>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <span class="detail-label">Sender:</span>
+                                <span class="detail-value">Kofi Mensah (Accra)</span>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <span class="detail-label">Recipient:</span>
+                                <span class="detail-value">Ama Owusu (Kumasi)</span>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <span class="detail-label">Parcel Type:</span>
+                                <span class="detail-value">Document</span>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <span class="detail-label">Weight:</span>
+                                <span class="detail-value">0.5 kg</span>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <span class="detail-label">Estimated Delivery:</span>
+                                <span class="detail-value">November 30, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tracking-help">
+                <div class="section-title">
+                    <h2>Need Help With Tracking?</h2>
+                    <p>We're here to assist you with any tracking issues</p>
+                </div>
+                
+                <div class="help-grid">
+                    <div class="help-item">
+                        <div class="help-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>Speak directly with our customer service team for immediate assistance</p>
+                        <p><strong>0554908246</strong></p>
+                    </div>
+                    
+                    <div class="help-item">
+                        <div class="help-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>Send us an email and we'll respond within 24 hours</p>
+                        <p><strong>support@2mexpressplus.com</strong></p>
+                    </div>
+                    
+                    <div class="help-item">
+                        <div class="help-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Terminal</h3>
+                        <p>Visit any of our terminals for in-person assistance with tracking</p>
+                        <p><strong>Find nearest terminal</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Need to Send a Parcel?</h2>
+            <p>Use our reliable parcel delivery service to send items across Ghana</p>
+            <div class="cta-buttons">
+                <a href="booking.html" class="btn">Send a Parcel</a>
+                <a href="contact.html" class="btn btn-light">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>2M Express is a leading transport company providing reliable and comfortable transportation and courier services across Ghana since 2021.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us </a></li>
+                        <li><a href="agent-registration.html">Agent Registration</a></li>
+                        <li><a href="terminals.html">Terminals</a></li>
+                        <li><a href="tracking.html">Track Parcels</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Kwame Nkrumah Circle, Accra</p>
+                    <p><i class="fas fa-phone"></i> 0554908246</p>
+                    <p><i class="fas fa-envelope"></i> info@2mexpressplus.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for updates and offers</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" style="padding: 12px; width: 100%; margin-bottom: 10px; border-radius: 4px; border: none;">
+                        <button type="submit" style="padding: 12px; width: 100%; background-color: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 2M Express Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Tracking Form Submission
+        document.getElementById('trackingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const trackingNumber = document.getElementById('tracking-number').value.trim();
+            
+            if (!trackingNumber) {
+                alert('Please enter a tracking number');
+                return;
+            }
+            
+            // In a real implementation, you would make an API call here
+            // For demo purposes, we'll show the demo results
+            
+            // Hide initial message
+            document.getElementById('tracking-results').style.display = 'none';
+            
+            // Show demo results
+            document.getElementById('demo-results').style.display = 'block';
+            
+            // Update tracking number in demo
+            document.querySelector('#demo-results .tracking-id').textContent = trackingNumber;
+        });
+        
+        // Sample tracking numbers for demo
+        const sampleNumbers = ['2M789654123', '2M123456789', '2M456123789'];
+        let currentSample = 0;
+        
+        // Rotate sample tracking numbers in placeholder
+        function rotateSampleNumbers() {
+            document.getElementById('tracking-number').placeholder = `e.g. ${sampleNumbers[currentSample]}`;
+            currentSample = (currentSample + 1) % sampleNumbers.length;
+        }
+        
+        // Initialize sample rotation
+        setInterval(rotateSampleNumbers, 2000);
+        rotateSampleNumbers();
+    </script>
+</body>
+</html>
