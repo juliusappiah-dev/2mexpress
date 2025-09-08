@@ -13,18 +13,23 @@
             box-sizing: border-box;
         }
         
-        :root {
+         :root {
             --primary: #262685;
-            --secondary: #515199;
-            --accent: #f9a825;
-            --light: #f5f5f5;
-            --dark: #333;
-            --gray: #777;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --accent-dark: #d97706;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --radius: 12px;
         }
         
         body {
@@ -1121,3 +1126,4 @@
 </body>
 
 </html>
+
