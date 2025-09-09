@@ -478,54 +478,312 @@
         /* Values Section */
         .values {
             padding: 100px 0;
-            background: var(--light);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(245, 158, 11, 0.03) 100%);
+        }
+
+        .values::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.03) 0%, rgba(37, 99, 235, 0.03) 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .value-card {
             background: var(--white);
             padding: 40px 30px;
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
             transition: var(--transition);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
         }
 
         .value-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
         }
 
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .value-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            color: var(--primary);
-            margin: 0 auto 20px;
+            font-size: 32px;
+            color: var(--white);
+            margin: 0 auto 25px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--accent) 0%, #e67e22 100%);
+        }
+
+        .value-icon i {
+            transition: var(--transition);
+        }
+
+        .value-card:hover .value-icon i {
+            transform: rotateY(180deg);
         }
 
         .value-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--secondary);
-            margin-bottom: 15px;
-            font-weight: 600;
+            margin-bottom: 18px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .value-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .value-card:hover h3::after {
+            width: 80px;
+            background: var(--primary);
         }
 
         .value-card p {
             color: var(--gray);
             line-height: 1.7;
+            font-size: 1.05rem;
+            margin-top: auto;
         }
 
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .values {
+                padding: 70px 0;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .values-stats {
+                gap: 20px;
+            }
+            
+            .stat-item {
+                flex: 1;
+                min-width: 130px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .value-card {
+                padding: 30px 20px;
+            }
+            
+            .value-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 28px;
+            }
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 25px;
+        }
+
+        .team-info h3 {
+            color: var(--secondary);
+            margin-bottom: 8px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .team-info p {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .team-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .team-social a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
 
         /* CTA Section */
         .cta {
@@ -995,7 +1253,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Core Values</h2>
-                <p class="section-subtitle">The principles that guide everything we do at 2M Express</p>
+                <p class="section-subtitle">The principles that guide everything we do at 2M Express, ensuring excellence in every journey</p>
             </div>
             
             <div class="values-grid">
@@ -1004,7 +1262,7 @@
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Safety First</h3>
-                    <p>ISO-certified safety protocols and continuous driver training programs ensure passenger security.</p>
+                    <p>ISO-certified safety protocols and continuous driver training programs ensure passenger security is never compromised.</p>
                 </div>
                 
                 <div class="value-card">
@@ -1012,7 +1270,7 @@
                         <i class="fas fa-clock"></i>
                     </div>
                     <h3>Punctuality</h3>
-                    <p>We understand that your time is valuable. Our commitment to punctuality ensures you reach your destination as scheduled.</p>
+                    <p>We understand that your time is valuable. Our commitment to punctuality ensures you reach your destination as scheduled, every time.</p>
                 </div>
                 
                 <div class="value-card">
@@ -1020,7 +1278,7 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Customer Care</h3>
-                    <p>Every passenger matters. We go the extra mile to ensure your journey is comfortable and exceeds expectations.</p>
+                    <p>Every passenger matters. We go the extra mile to ensure your journey is comfortable and exceeds expectations at every turn.</p>
                 </div>
                 
                 <div class="value-card">
@@ -1028,13 +1286,67 @@
                         <i class="fas fa-leaf"></i>
                     </div>
                     <h3>Sustainability</h3>
-                    <p>40% emission reduction through hybrid fleet and carbon offset programs for a greener future.</p>
+                    <p>40% emission reduction through hybrid fleet and carbon offset programs for a greener future and cleaner communities.</p>
+                </div>
+            </div>
+            
+            
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Leadership Team</h2>
+                <p class="section-subtitle">Meet the dedicated professionals who drive our success and innovation</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Michael Mensah - CEO">
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Mensah</h3>
+                        <p>Chief Executive Officer</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Mary Owusu - Operations Manager">
+                    </div>
+                    <div class="team-info">
+                        <h3>Mary Owusu</h3>
+                        <p>Operations Manager</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Kwame Adjei - Head of Transport">
+                    </div>
+                    <div class="team-info">
+                        <h3>Kwame Adjei</h3>
+                        <p>Head of Transport</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-
 
     <!-- CTA Section -->
     <section class="cta">
@@ -1049,7 +1361,6 @@
     </section>
 
     <!-- Footer -->
-        <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1077,9 +1388,9 @@
                     <h4>Contact Info</h4>
                     <ul>
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i> Kwame Nkrumah Circle, Accra</a></li>
-                        <li><a href="tel:0593860860"><i class="fas fa-phone-alt"></i> 0593860860</a></li>
-                        <li><a href="mailto:info@2mexpress.com.gh"><i class="fas fa-envelope"></i> info@2mexpress.com.gh</a></li>
-                        <li><a href="#"><i class="fas fa-clock"></i> Mon-Sun: 24 Hours</a></li>
+                        <li><a href="tel:0554908246"><i class="fas fa-phone-alt"></i> 0554908246</a></li>
+                        <li><a href="mailto:info@2mexpress.com"><i class="fas fa-envelope"></i> info@2mexpress.com</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> Mon-Sat: 6:00AM - 10:00PM</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1144,7 +1455,3 @@
     </script>
 </body>
 </html>
-
-
-
-
